@@ -22,6 +22,6 @@ U -- ModificarPedido
 EB -- ModificarPedido
 EB -- AvaliarPedido
 AF --  AnalisarPedido
-AnalisarPedido .. ConsultarViabilidade : include
+AnalisarPedido .. ConsultarViabilidade : <<include>>
 
 @enduml
