@@ -1,0 +1,54 @@
+@startuml
+
+class Cliente {
+    -int id
+    -String nome
+    -long rg
+    -long cpf
+    -String endereco
+    -String profissao
+    -List<String> empregadores
+    -List<long> rendimentos
+    -List<Pedido> pedidos
+    +Cliente(String nome, long rg, long cpf, String endereco, String profissao, )
+    +void adicionarPedido(Pedido pedido)
+    +void modificarPedido(Pedido pedido)
+    +void consultarPedido(Pedido pedido)
+    +void cancelarPedido(Pedido pedido)
+    +List<Pedido> getPedidos()
+}
+
+class Agente {
+    -int id
+    -String nome
+    -List<Pedido> contratos
+    +Agente(String nome)
+    +void modificarPedido(Pedido pedido)
+    +void avaliarPedido(Pedido pedido)
+    +void executarContrato(Pedido pedido)
+}
+
+class Pedido {
+    -int id
+    -Cliente cliente
+    -Automovel automovel
+    -Date dataRetirada
+    -Date dataDevolucao
+    +Pedido(Cliente cliente, Automovel automovel, Date dataRetirada, Date dataDevolucao)
+}
+
+class Automovel {
+    -String matricula
+    -int ano
+    -String marca
+    -String modelo
+    -String placa
+    +Automovel(String matricula, int ano, String marca, String modelo, String placa)
+}
+
+Agente "1" -- "0..*" Pedido
+Automovel "1" -- "0..*" Pedido
+Pedido "0..*" -- "1" Cliente
+
+
+@enduml
