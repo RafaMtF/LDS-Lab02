@@ -1,40 +1,40 @@
 @startuml
-
 class Cliente {
-    -int id
     -String nome
     -long rg
     -long cpf
     -String endereco
     -String profissao
     -List<String> empregadores
-    -List<long> rendimentos
+    -List<Double> rendimentos
     -List<Pedido> pedidos
-    +Cliente(String nome, long rg, long cpf, String endereco, String profissao, )
+    +Cliente(String nome, long rg, long cpf, String endereco, String profissao, List<String> empregadores, List<Double> rendimentos)
     +void adicionarPedido(Pedido pedido)
     +void modificarPedido(Pedido pedido)
     +void consultarPedido(Pedido pedido)
     +void cancelarPedido(Pedido pedido)
-    +List<Pedido> getPedidos()
 }
 
-class Agente {
-    -int id
+class Empresa {
     -String nome
-    -List<Pedido> contratos
-    +Agente(String nome)
+    -List<Pedido> pedidos
+    +Empresa(String nome)
     +void modificarPedido(Pedido pedido)
-    +void avaliarPedido(Pedido pedido)
-    +void executarContrato(Pedido pedido)
+    +void aprovarPedido(Pedido pedido)
+    +Contrato criarContrato(Pedido pedido)
+}
+
+class Banco {
+    +ContratoCredito aprovarContratoCredito(Pedido pedido)
 }
 
 class Pedido {
-    -int id
     -Cliente cliente
     -Automovel automovel
-    -Date dataRetirada
-    -Date dataDevolucao
-    +Pedido(Cliente cliente, Automovel automovel, Date dataRetirada, Date dataDevolucao)
+    -Duracao duracao
+    -Boolean aprovado
+    -Date dataAprovacao
+    +Pedido(Cliente cliente, Automovel automovel, Duracao duracao)
 }
 
 class Automovel {
@@ -46,9 +46,37 @@ class Automovel {
     +Automovel(String matricula, int ano, String marca, String modelo, String placa)
 }
 
-Agente "1" -- "0..*" Pedido
-Automovel "1" -- "0..*" Pedido
-Pedido "0..*" -- "1" Cliente
+class Contrato {
+    -Pedido pedido
+    -Empresa empresa
+    +Contrato(Pedido pedido, Empresa empresa)
+}
 
+class ContratoCredito {
+    +ContratoCredito(Pedido pedido, Banco banco) 
+}
+
+class Locacao {
+    -Pedido pedido 
+    -Empresa avaliador
+    -Banco avaliadorCredito
+    -Date dataInicio
+    +Locacao(Pedido pedido, Empresa avaliador)
+}
+
+enum Duracao {
+    12_MESES
+    24_MESES
+    36_MESES
+    48_MESES
+}
+
+Cliente "1" --o "1..*" Pedido
+Pedido "1" --o "0..1" Locacao
+Empresa "1" *-- "0..*" Contrato
+Empresa "1" o-- "0..*" Locacao
+Pedido "0..*" o-- "1" Automovel
+Empresa <|-- Banco
+Contrato <|-- ContratoCredito
 
 @enduml
