@@ -1,4 +1,5 @@
-@startuml
+@startuml classDiagram
+
 class Cliente {
     -String nome
     -long rg
