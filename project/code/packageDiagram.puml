@@ -1,0 +1,50 @@
+@startuml packageDiagram
+
+package "Controller" {
+    class ClienteController
+    class PedidoController
+    class EmpresaController
+    class AutomovelController
+}
+
+package "Service" {
+    class ClienteService
+    class PedidoService
+    class EmpresaService
+    class AutomovelService
+}
+
+package "Repository" {
+    class ClienteRepository
+    class PedidoRepository
+    class EmpresaRepository
+    class AutomovelRepository
+}
+
+package "Model" {
+    class Cliente
+    class Pedido
+    class Empresa
+    class Automovel
+    class Contrato
+    class ContratoCredito
+    class Locacao
+    enum Duracao
+}
+
+ClienteController --> ClienteService
+PedidoController --> PedidoService
+EmpresaController --> EmpresaService
+AutomovelController --> AutomovelService
+
+ClienteService --> ClienteRepository
+PedidoService --> PedidoRepository
+EmpresaService --> EmpresaRepository
+AutomovelService --> AutomovelRepository
+
+ClienteRepository <-- Cliente
+PedidoRepository <-- Pedido
+EmpresaRepository <-- Empresa
+AutomovelRepository <-- Automovel
+
+@enduml
