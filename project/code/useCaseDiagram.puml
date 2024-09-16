@@ -1,7 +1,10 @@
 @startuml useCaseDiagram
 
 :Usuário: as U
-:Agente Financeiro: as AF
+:Banco: as B
+:Empresa: as E
+
+B --|> E
 
 (Introduzir pedido de aluguel) as IntroPedido
 (Cancelar pedido de aluguel) as CancelarPedido
@@ -12,12 +15,15 @@
 
 (Considerar execução do contrato) as ConsultarViabilidade
 
+(Conceder contrato de crédito) as ConcederContrato
+
 U -- IntroPedido
 U -- CancelarPedido
 U -- ConsultarPedido
 U -- ModificarPedido
-AF -- ModificarPedido
-AF --  AnalisarPedido
+E -- ModificarPedido
+E --  AnalisarPedido
+B -right-- ConcederContrato
 AnalisarPedido .. ConsultarViabilidade : <<include>>
 
 @enduml
