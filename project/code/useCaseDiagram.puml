@@ -1,21 +1,20 @@
-@startuml useCaseDiagram
-
-:Usuário: as U
+@startuml
+:Cliente: as U
 :Banco: as B
 :Empresa: as E
 
 B --|> E
 
-(Introduzir pedido de aluguel) as IntroPedido
-(Cancelar pedido de aluguel) as CancelarPedido
-(Consultar pedido de aluguel) as ConsultarPedido
-(Modificar pedido de aluguel) as ModificarPedido
+(Criar pedido de locação) as IntroPedido
+(Cancelar pedido de locação) as CancelarPedido
+(Consultar pedido de locação) as ConsultarPedido
+(Alterar pedido de locação) as ModificarPedido
 
-(Analisar pedido de aluguel) as AnalisarPedido
+(Avaliar pedido de locação) as AnalisarPedido
 
-(Considerar execução do contrato) as ConsultarViabilidade
+(Vincular contrato) as ConsultarViabilidade
 
-(Conceder contrato de crédito) as ConcederContrato
+(Vincular contrato de crédito) as ConcederContrato
 
 U -- IntroPedido
 U -- CancelarPedido

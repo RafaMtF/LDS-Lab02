@@ -1,5 +1,4 @@
-@startuml classDiagram
-
+@startuml
 class Cliente {
     -String nome
     -long rg
@@ -8,34 +7,42 @@ class Cliente {
     -String profissao
     -List<String> empregadores
     -List<Double> rendimentos
-    -List<Pedido> pedidos
+    -List<Locacao> locacoes
     +Cliente(String nome, long rg, long cpf, String endereco, String profissao, List<String> empregadores, List<Double> rendimentos)
-    +void adicionarPedido(Pedido pedido)
-    +void modificarPedido(Pedido pedido)
-    +void consultarPedido(Pedido pedido)
-    +void cancelarPedido(Pedido pedido)
+    +Locacao criarLocacao(Cliente cliente, Automovel automovel, Duracao duracao)
 }
 
 class Empresa {
     -String nome
-    -List<Pedido> pedidos
     +Empresa(String nome)
-    +void modificarPedido(Pedido pedido)
-    +void aprovarPedido(Pedido pedido)
-    +Contrato criarContrato(Pedido pedido)
+    +Locacao alterarLocacao(Locacao locacao)
 }
 
 class Banco {
-    +ContratoCredito aprovarContratoCredito(Pedido pedido)
+    +void avaliarContratoCredito(Locacao locacao)
+    -ContratoCredito criarContratoCredito()
 }
 
-class Pedido {
+class Locacao {
     -Cliente cliente
     -Automovel automovel
     -Duracao duracao
-    -Boolean aprovado
+    -StatusLocacao statusLocacao
     -Date dataAprovacao
-    +Pedido(Cliente cliente, Automovel automovel, Duracao duracao)
+    +Locacao(Cliente cliente, Automovel automovel, Duracao duracao)
+    +void alterarLocacao()
+    +void consultarLocacao()
+    +void cancelarLocacao()
+    +void avaliarLocacao()
+    +void vincularContrato()
+    +void vincularContratoCredito(Banco banco)
+}
+
+enum StatusLocacao {
+    PENDENTE
+    APROVADA
+    REPROVADA
+    CANCELADA
 }
 
 class Automovel {
@@ -48,21 +55,13 @@ class Automovel {
 }
 
 class Contrato {
-    -Pedido pedido
+    -Locacao locacao
     -Empresa empresa
-    +Contrato(Pedido pedido, Empresa empresa)
+    +Contrato(Locacao locacao, Empresa empresa)
 }
 
 class ContratoCredito {
-    +ContratoCredito(Pedido pedido, Banco banco) 
-}
-
-class Locacao {
-    -Pedido pedido 
-    -Empresa avaliador
-    -Banco avaliadorCredito
-    -Date dataInicio
-    +Locacao(Pedido pedido, Empresa avaliador)
+    +ContratoCredito(Locacao locacao, Banco banco) 
 }
 
 enum Duracao {
@@ -72,11 +71,10 @@ enum Duracao {
     48_MESES
 }
 
-Cliente "1" --o "1..*" Pedido
-Pedido "1" --o "0..1" Locacao
-Empresa "1" *-- "0..*" Contrato
-Empresa "1" o-- "0..*" Locacao
-Pedido "0..*" o-- "1" Automovel
+Cliente "1" --o "1..*" Locacao
+Empresa "1" --o "0..*" Contrato
+Locacao "0..*" o-- "1" Automovel
+Locacao --o Contrato
 Empresa <|-- Banco
 Contrato <|-- ContratoCredito
 
