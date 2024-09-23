@@ -2,29 +2,38 @@
 
 package "Controller" {
     class ClienteController
-    class PedidoController
     class EmpresaController
     class AutomovelController
+    class ContratoController
+    class BancoController
+    class LocacaoController
+    class ContratoCreditoController
 }
 
 package "Service" {
     class ClienteService
-    class PedidoService
     class EmpresaService
     class AutomovelService
+    class ContratoService
+    class BancoService
+    class LocacaoService
+    class ContratoCreditoService
 }
 
 package "Repository" {
     class ClienteRepository
-    class PedidoRepository
     class EmpresaRepository
     class AutomovelRepository
+    class ContratoRepository
+    class BancoRepository
+    class LocacaoRepository
+    class ContratoCreditoRepository
 }
 
 package "Model" {
     class Cliente
-    class Pedido
     class Empresa
+    class Banco
     class Automovel
     class Contrato
     class ContratoCredito
@@ -33,18 +42,19 @@ package "Model" {
 }
 
 ClienteController --> ClienteService
-PedidoController --> PedidoService
 EmpresaController --> EmpresaService
 AutomovelController --> AutomovelService
+ContratoController --> ContratoService
+BancoController --> BancoService
+LocacaoController --> LocacaoService
+ContratoCreditoController --> ContratoCreditoService
 
 ClienteService --> ClienteRepository
-PedidoService --> PedidoRepository
 EmpresaService --> EmpresaRepository
 AutomovelService --> AutomovelRepository
-
-ClienteRepository <-- Cliente
-PedidoRepository <-- Pedido
-EmpresaRepository <-- Empresa
-AutomovelRepository <-- Automovel
+ContratoService --> ContratoRepository
+BancoService --> BancoRepository
+LocacaoService --> LocacaoRepository
+ContratoCreditoService --> ContratoCreditoRepository
 
 @enduml
