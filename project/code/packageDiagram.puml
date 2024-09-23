@@ -2,7 +2,6 @@
 
 package "Controller" {
     class ClienteController
-    class PedidoController
     class EmpresaController
     class AutomovelController
     class ContratoController
@@ -13,7 +12,6 @@ package "Controller" {
 
 package "Service" {
     class ClienteService
-    class PedidoService
     class EmpresaService
     class AutomovelService
     class ContratoService
@@ -24,7 +22,6 @@ package "Service" {
 
 package "Repository" {
     class ClienteRepository
-    class PedidoRepository
     class EmpresaRepository
     class AutomovelRepository
     class ContratoRepository
@@ -35,7 +32,6 @@ package "Repository" {
 
 package "Model" {
     class Cliente
-    class Pedido
     class Empresa
     class Banco
     class Automovel
@@ -46,7 +42,6 @@ package "Model" {
 }
 
 ClienteController --> ClienteService
-PedidoController --> PedidoService
 EmpresaController --> EmpresaService
 AutomovelController --> AutomovelService
 ContratoController --> ContratoService
@@ -55,7 +50,6 @@ LocacaoController --> LocacaoService
 ContratoCreditoController --> ContratoCreditoService
 
 ClienteService --> ClienteRepository
-PedidoService --> PedidoRepository
 EmpresaService --> EmpresaRepository
 AutomovelService --> AutomovelRepository
 ContratoService --> ContratoRepository
