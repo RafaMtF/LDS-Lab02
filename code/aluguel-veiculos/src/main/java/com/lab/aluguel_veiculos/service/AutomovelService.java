@@ -5,8 +5,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
-import com.lab.aluguel_veiculos.Repository.AutomovelRepository;
+
 import com.lab.aluguel_veiculos.model.Automovel;
+import com.lab.aluguel_veiculos.repository.AutomovelRepository;
 
 @Service
 public class AutomovelService {
