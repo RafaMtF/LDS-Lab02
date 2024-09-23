@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.lab.aluguel_veiculos.Repository.ClienteRepository;
+
 import com.lab.aluguel_veiculos.model.Cliente;
+import com.lab.aluguel_veiculos.repository.ClienteRepository;
+
 import jakarta.transaction.Transactional;
 
 @Service

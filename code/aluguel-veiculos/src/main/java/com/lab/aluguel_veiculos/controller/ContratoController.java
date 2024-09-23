@@ -1,4 +1,4 @@
-package main.java.com.lab.aluguel_veiculos.controller;
+package com.lab.aluguel_veiculos.controller;
 
 import com.lab.aluguel_veiculos.model.Contrato;
 import com.lab.aluguel_veiculos.service.ContratoService;
