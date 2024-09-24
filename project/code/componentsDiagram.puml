@@ -1,43 +1,25 @@
 @startuml
-
-[Browser] <.. [Servidor API]
-
 interface "REST" as R1
-interface "REST" as R2
-interface "REST" as R3
-interface "REST" as R4
-interface "REST" as R5
-interface "REST" as R6
-interface "REST" as R7
 
-R1 -down- [Veiculo]
-R2 -down- [Cliente]
-R3 -down- [Locacao]
-R4 -down- [Empresa]
-R5 -down- [Banco]
-R6 -down- [Contrato]
-R7 -down- [ContratoCredito]
+[Client] <.. R1
 
-[Servidor API] --> R1
-[Servidor API] --> R2
-[Servidor API] --> R3
-[Servidor API] --> R4
-[Servidor API] --> R5
-[Servidor API] --> R6
-[Servidor API] --> R7
+node "SpringBoot" as C1 {
+[Veiculo]
+[Cliente]
+[Locacao]
+[Empresa]
+[Contrato]
+[ContratoCredito]
+}
+
+C1 -up- R1
 
 interface "TCP/IP" as T1
 
-database "PostgreSQL" {
-   T1 -down- [Persistence]
+database "PostgreSQL" as PG {
 }
 
-[Veiculo] --> T1
-[Cliente] --> T1
-[Locacao] --> T1
-[Empresa] --> T1
-[Banco] --> T1
-[Contrato] --> T1
-[ContratoCredito] --> T1
+T1 - PG
+C1 -right-> T1
 
 @enduml
