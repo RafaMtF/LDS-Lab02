@@ -2,6 +2,7 @@ package com.lab.aluguel_veiculos.service;
 
 import com.lab.aluguel_veiculos.model.Banco;
 import com.lab.aluguel_veiculos.repository.BancoRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
