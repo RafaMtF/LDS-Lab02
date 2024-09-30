@@ -38,6 +38,7 @@ public class AutomovelService {
             automovel.setMarca(updatedAutomovel.getMarca());
             automovel.setModelo(updatedAutomovel.getModelo());
             automovel.setPlaca(updatedAutomovel.getPlaca());
+            automovel.setIdEmpresa(updatedAutomovel.getIdEmpresa());
             return automovelRepository.save(automovel);
         }else{
             throw new RuntimeException("Automovel com ID " + id + " não encontrado.");

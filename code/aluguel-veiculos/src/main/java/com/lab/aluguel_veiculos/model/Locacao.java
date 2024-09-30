@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,8 +16,14 @@ public class Locacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idLocacao;
 
-    private Long idCliente;  // Representando a relação com Cliente por ID
-    private Long idAutomovel; // Representando a relação com Automovel por ID
+    @ManyToOne
+    @JoinColumn(name = "id_automovel", referencedColumnName = "idAutomovel")
+    private Automovel automovel;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", referencedColumnName = "idCliente")
+    private Cliente cliente;
+
     private String duracao;  // Duracao como String (pode ser enum mapeado)
     private String statusLocacao;  // Status como String (pode ser enum mapeado)
     private String dataAprovacao;
@@ -29,20 +37,20 @@ public class Locacao {
         this.idLocacao = idLocacao;
     }
 
-    public Long getIdCliente() {
-        return idCliente;
+    public Automovel getAutomovel() {
+        return automovel;
     }
 
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
+    public void setAutomovel(Automovel automovel) {
+        this.automovel = automovel;
     }
 
-    public Long getIdAutomovel() {
-        return idAutomovel;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdAutomovel(Long idAutomovel) {
-        this.idAutomovel = idAutomovel;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public String getDuracao() {
