@@ -1,0 +1,24 @@
+@startuml
+
+node Servidor as S {
+  folder "Backend" as SB {
+    [SpringBoot]
+  }
+
+  [Swagger] as SW
+  
+  folder "Banco de dados" as BD {
+    [PostgreSQL]
+  }
+}
+
+node "Computador pessoal" as B {
+  [Browser]
+}
+
+SW .. B : <<TCP/IP>>
+
+BD -- SW
+SB -- SW
+
+@enduml
