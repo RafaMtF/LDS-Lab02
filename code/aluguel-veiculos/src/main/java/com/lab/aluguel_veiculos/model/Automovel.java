@@ -19,6 +19,7 @@ public class Automovel {
     private String marca;
     private String modelo;
     private String placa;
+    private Long idEmpresa;
 
     public Long getIdAutomovel() {
         return idAutomovel;
@@ -55,6 +56,12 @@ public class Automovel {
     }
     public void setPlaca(String placa) {
         this.placa = placa;
+    }
+    public Long getIdEmpresa() {
+        return idEmpresa;
+    }
+    public void setIdEmpresa(Long idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
     
 }
